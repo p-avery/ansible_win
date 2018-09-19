@@ -19,15 +19,3 @@
   - name: Deploy packages
     win_command: "choco push {{ ansible_env['TEMP'] }}\\{{ item | win_basename }}.nupkg --source http://127.0.0.1/chocolatey --api-key=SuperSecretChocolateyAPIKey --force"
     with_items: "{{ packages }}"
-
-- name: Install packages from local repository
-  hosts: workshop-w1
-  vars:
-    packages:
-    - firefox
-  tasks:
-  - name: Install packages
-    win_chocolatey:
-      name: "{{ item }}"
-      source: "http://{{ hostvars['workshop-w2']['ansible_host'] }}/chocolatey"
-    with_items: "{{ packages }}"
