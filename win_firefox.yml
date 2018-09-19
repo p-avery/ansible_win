@@ -1,0 +1,12 @@
+- name: Install Firefox from local repository
+  hosts: windows
+  vars:
+    chocolatey_server: wincs.lab.int
+    packages:
+    - firefox
+  tasks:
+  - name: Install packages
+    win_chocolatey:
+      name: "{{ item }}"
+      source: "http://{{ chocolatey_server }}/chocolatey"
+    with_items: "{{ packages }}"
