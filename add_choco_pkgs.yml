@@ -1,0 +1,15 @@
+---
+- name: install new packages into local chocolatey server
+  hosts: chocolatey
+  gather_facts: false
+
+  tasks:
+  - name: Download Chocolatey Packages
+    win_get_url:
+      url: "{{ item }}"
+      dest: "{{ ansible_env['TEMP'] }}\\{{ item | win_basename }}.nupkg"
+    with_items: "{{ packages }}"
+    
+  - name: Deploy packages
+    win_command: "choco push {{ ansible_env['TEMP'] }}\\{{ item | win_basename }}.nupkg --source http://127.0.0.1/chocolatey --api-key={{ api_key }} --force"
+    with_items: "{{ packages }}"
