@@ -1,0 +1,8 @@
+- name: Install packages from local chocolatey repository
+  hosts: windows
+  tasks:
+  - name: Install packages
+    win_chocolatey:
+      name: "{{ item }}"
+      source: "http://{{ chocolatey_server }}/chocolatey"
+    with_items: "{{ packages }}"
