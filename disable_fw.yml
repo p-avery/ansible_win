@@ -1,6 +1,6 @@
 ---
 - name: Disable Windows Firewall
-  hosts: windows
+  hosts: Windows
   tasks:
   - name: Disable firewall for Domain, Public and Private profiles
     win_firewall:
