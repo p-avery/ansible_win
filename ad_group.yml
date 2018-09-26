@@ -1,0 +1,9 @@
+---
+- name: create AD Group Demo
+  hosts: windows
+  tasks:
+  - name: Create ad group demo
+    win_domain_group:
+      name: "{{ group_name }}"
+      scope: global
+      path: "{{ ou_path }}"
