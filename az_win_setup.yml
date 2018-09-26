@@ -1,0 +1,13 @@
+---
+- name: setup scripts for Azure Windows VM
+  hosts: os_windows
+  gather_facts: false
+  tasks:
+  - name: ensure windows Firewall is disabled
+    win_command: netsh advfirewall set allprofiles state off
+
+  - name: run ansible remote script
+    win_shell: Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1'))
+
+  - name: ensure credssp is enabled
+    win_shell: Enable-WSManCredSSP -Role Server -Force
