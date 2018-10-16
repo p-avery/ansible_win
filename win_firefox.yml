@@ -1,7 +1,7 @@
 - name: Install Firefox from local repository
   hosts: all
   vars:
-    chocolatey_server: wincs.lab.int
+    chocolatey_server: 10.10.10.174
     packages:
     - firefox
   tasks:
