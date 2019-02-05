@@ -1,0 +1,5 @@
+---
+- name: Setup Chocolatey Server
+  hosts: chocolatey
+  roles:
+    - chocolatey-server
