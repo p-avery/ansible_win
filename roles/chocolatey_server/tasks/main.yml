@@ -20,7 +20,8 @@
   win_psmodule:
     name: xWebAdministration
     state: present
-
+  tags: online
+  
 - name: Ensure Default Web Site is not present
   win_dsc:
     resource_name: xWebsite
@@ -31,7 +32,8 @@
   win_chocolatey:
     name: "chocolatey.server"
     state: present
-
+  tags: online
+  
 - name: Configure AppPool for Chocolatey.server
   win_dsc:
     resource_name: xWebAppPool
